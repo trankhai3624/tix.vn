@@ -4,12 +4,11 @@ import phim3 from "../../img/carousel/p3.png";
 import phim4 from "../../img/carousel/p4.jpg";
 import phim5 from "../../img/carousel/p5.jpg";
 import Slider from "react-slick";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useStyles } from "./style";
-import { Container, Typography } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 
 function Carousel() {
   const classes = useStyles();
@@ -24,12 +23,12 @@ function Carousel() {
   };
 
   const ArrowLeft = (props) => (
-    <div onClick={previous}>
+    <div className={`${classes.arrow} ${classes.arrowLeft}`} onClick={previous}>
       <ArrowBackIosIcon />
     </div>
   );
   const ArrowRight = (props) => (
-    <div onClick={next}>
+    <div className={`${classes.arrow} ${classes.arrowRight}`} onClick={next}>
       <ArrowForwardIosIcon />
     </div>
   );
@@ -39,18 +38,18 @@ function Carousel() {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    // infinite: false,
+    infinite: true,
     // rows: 2,
     dots: true,
     dotsClass: `slick-dots ${classes.dots}`,
-    // nextArrow: <ArrowLeft />,
-    // prevArrow: <ArrowRight />,
+    nextArrow: <ArrowRight />,
+    prevArrow: <ArrowLeft />,
   };
 
   return (
     <div>
       <Container maxWidth className={classes.container}>
-        <Slider {...settings}>
+        <Slider ref={ref} {...settings}>
           <img src={phim1} className={classes.img} />
           <img src={phim2} className={classes.img} />
           <img src={phim3} className={classes.img} />

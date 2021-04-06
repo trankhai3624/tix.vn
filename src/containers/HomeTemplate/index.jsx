@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Carousel from "../../components/Carousel";
+import FilmList from "../../components/FilmList/filmList";
+// import Carousel from "../../components/Carousel";
 import Header from "../../components/HomeNavbar";
 import FilmSelect from "../../components/Selector";
 function LayoutHome(props) {
@@ -8,7 +10,8 @@ function LayoutHome(props) {
     <>
       <Header />
       <Carousel />
-      {/* <FilmSelect /> */}
+      <FilmSelect />
+      <FilmList />
       {props.children}
     </>
   );

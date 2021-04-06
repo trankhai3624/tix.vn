@@ -8,6 +8,8 @@ export const useStyles = makeStyles((theme) => ({
     // width: "100%",
     height: "42rem",
     position: "relative",
+    overflow: "hidden",
+    "& .slick-slider": { left: "-25px", width: "105%" },
   },
   img: {
     width: "100%",
@@ -20,10 +22,10 @@ export const useStyles = makeStyles((theme) => ({
   //   textDecoration: "none",
   // },
   dots: {
-    // bottom: "-2%",
+    bottom: "60px",
     transition: "all 0.3s",
     "& li.slick-active button::before": {
-      color: "#02cdce",
+      color: "#02cdce !important",
       transform: "scale(1.2)",
       transition: "all 0.3s",
       opacity: 1,
@@ -35,9 +37,26 @@ export const useStyles = makeStyles((theme) => ({
       },
       "& button::before": {
         fontSize: theme.typography.pxToRem(11),
-        color: "#1d232b",
+        color: "#eeeeee",
         opacity: 1,
       },
     },
   },
+  arrow: {
+    zIndex: 2,
+    "& .MuiSvgIcon-root": {
+      width: "2.5rem",
+      height: "2.5rem",
+      fontSize: "1rem",
+      margin: "1rem",
+      color: "rgb(0, 173, 181,0.5)",
+      cursor: "pointer",
+      "&:hover": {
+        transition: "all .4s",
+        color: "rgb(0, 173, 181)",
+      },
+    },
+  },
+  arrowLeft: { position: "absolute", top: "40%", left: 0 },
+  arrowRight: { position: "absolute", top: "40%", right: "25px" },
 }));
