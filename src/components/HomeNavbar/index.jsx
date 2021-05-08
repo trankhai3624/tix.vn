@@ -90,6 +90,7 @@ const Header = (props) => {
                 <MenuItem
                   className={`${classes.menuItem} `}
                   onClick={() => handleMenuClick("/")}
+                  href="#lichChieu"
                 >
                   Lịch chiếu
                 </MenuItem>

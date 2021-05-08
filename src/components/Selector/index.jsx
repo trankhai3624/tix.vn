@@ -1,20 +1,123 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
+// import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import useStyles from "./style";
 import { Button, Container, Grid } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { LayThongTinLichChieuPhim } from "../../containers/HomeTemplate/Home/modules/actions";
+// import { LayThongTinLichChieuPhimRequest } from "../../containers/HomeTemplate/Home/modules/constants";
 
 export default function FilmSelect() {
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
+  const dispatch = useDispatch();
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const lichChieu = useSelector((state) => state.HomeReducer.lichChieuPhim);
+  const loadingLichChieuPhim = useSelector(
+    (state) => state.HomeReducer.loadingLichChieuPhim
+  );
+  const danhSachPhim = useSelector((state) => state.HomeReducer.danhSachPhim);
+
+  const [infoSelect, setInfoSelect] = useState({
+    maPhim: "",
+    heThongRap: "",
+    cumRap: "",
+    maLichChieu: "",
+  });
+
+  // const []
+
+  const renderPhim = () => {
+    return danhSachPhim.map((item, index) => {
+      return (
+        <MenuItem key={item.maPhim} value={item.maPhim}>
+          {item.tenPhim}
+        </MenuItem>
+      );
+    });
   };
-  //   console.log(age);
+
+  const renderHeThongRap = () => {
+    if (loadingLichChieuPhim) {
+      return (
+        <MenuItem disabled key="1" value="1">
+          Vui lòng chọn phim
+        </MenuItem>
+      );
+    } else {
+      return lichChieu.heThongRapChieu.map((item, index) => {
+        return (
+          <MenuItem key={item.maHeThongRap} value={item.maHeThongRap}>
+            {item.tenHeThongRap}
+          </MenuItem>
+        );
+      });
+    }
+  };
+
+  const renderCumRap = () => {
+    if (infoSelect.heThongRap && lichChieu !== "") {
+      let filterCumRap = lichChieu.heThongRapChieu.filter((cumRap) => {
+        return cumRap.maHeThongRap === infoSelect.heThongRap;
+      });
+
+      return filterCumRap[0].cumRapChieu.map((item, index) => {
+        return (
+          <MenuItem key={item.maCumRap} value={item.maCumRap}>
+            {item.tenCumRap}
+          </MenuItem>
+        );
+      });
+    } else {
+      return (
+        <MenuItem disabled key="1" value="1">
+          Vui lòng chọn phim và hệ thống rạp.
+        </MenuItem>
+      );
+    }
+  };
+
+  const renderSuatChieu = () => {
+    if (infoSelect.heThongRap && infoSelect.cumRap && lichChieu !== "") {
+      let filterCumRap = lichChieu.heThongRapChieu.filter((cumRap) => {
+        return cumRap.maHeThongRap === infoSelect.heThongRap;
+      });
+
+      let filterNgayChieu = filterCumRap[0].cumRapChieu.filter((cumRap) => {
+        return cumRap.maCumRap === infoSelect.cumRap;
+      });
+
+      return filterNgayChieu[0].lichChieuPhim.map((item, index) => {
+        return (
+          <MenuItem key={index} value={item.maLichChieu}>
+            {item.ngayChieuGioChieu}
+          </MenuItem>
+        );
+      });
+    } else {
+      return (
+        <MenuItem disabled key="1" value="1">
+          Vui lòng chọn phim, hệ thống rạp và cụm rạp.
+        </MenuItem>
+      );
+    }
+  };
+
+  const handleDispatchMovie = (maPhim) => {
+    if (maPhim !== null || maPhim !== "") {
+      dispatch(LayThongTinLichChieuPhim(maPhim));
+    }
+  };
+
+  console.log(infoSelect.maLichChieu);
+
+  useEffect(() => {
+    if (infoSelect.maPhim !== "") {
+      handleDispatchMovie(infoSelect.maPhim);
+    }
+  }, [infoSelect.maPhim]);
   return (
     <Container maxWidth="md" className={classes.form}>
       <Grid container spacing={1}>
@@ -24,62 +127,82 @@ export default function FilmSelect() {
             <Select
               labelId="film"
               id="film"
-              value={age}
-              onChange={handleChange}
+              value={infoSelect.maPhim}
+              onChange={(event, newValue) => {
+                setInfoSelect({
+                  maPhim: event.target.value,
+                  heThongRap: "",
+                  cumRap: "",
+                  maLichChieu: "",
+                });
+              }}
             >
-              <MenuItem value={10}>Gái già lắm chiêu</MenuItem>
-              <MenuItem value={20}>Bố già</MenuItem>
-              <MenuItem value={30}>Raya</MenuItem>
+              {renderPhim()}
             </Select>
           </FormControl>
         </Grid>
         <Grid className={classes.gridItem} item xs>
           <FormControl className={`${classes.formControl} `}>
-            <InputLabel id="film">Rạp</InputLabel>
+            <InputLabel id="heThongRap">Hệ thống rạp</InputLabel>
             <Select
-              labelId="film"
-              id="film"
-              value={age}
-              onChange={handleChange}
+              labelId="heThongRap"
+              id="heThongRap"
+              value={infoSelect.heThongRap}
+              onChange={(event) => {
+                setInfoSelect({
+                  ...infoSelect,
+                  heThongRap: event.target.value,
+                  cumRap: "",
+                  maLichChieu: "",
+                });
+              }}
             >
-              <MenuItem value={10}>BHD Quang Trung</MenuItem>
-              <MenuItem value={20}>Lotte Nguyễn Văn Lượng</MenuItem>
-              <MenuItem value={30}>Galaxy Nguyễn Văn Quá</MenuItem>
+              {renderHeThongRap()}
             </Select>
           </FormControl>
         </Grid>
         <Grid className={classes.gridItem} item xs>
           <FormControl className={`${classes.formControl} `}>
-            <InputLabel id="film">Ngày xem</InputLabel>
+            <InputLabel id="cumRap">Cụm rạp</InputLabel>
             <Select
-              labelId="film"
-              id="film"
-              value={age}
-              onChange={handleChange}
+              labelId="cumRap"
+              id="cumRap"
+              value={infoSelect.cumRap}
+              onChange={(event) => {
+                setInfoSelect({
+                  ...infoSelect,
+                  cumRap: event.target.value,
+                  maLichChieu: "",
+                });
+              }}
             >
-              <MenuItem value={10}>Hôm nay</MenuItem>
-              <MenuItem value={20}>Ngày mai</MenuItem>
-              <MenuItem value={30}>Chủ nhật</MenuItem>
+              {renderCumRap()}
             </Select>
           </FormControl>
         </Grid>
         <Grid className={classes.gridItem} item xs>
           <FormControl className={`${classes.formControl} `}>
-            <InputLabel id="film">Xuất chiếu</InputLabel>
+            <InputLabel id="suatChieu">Suất chiếu</InputLabel>
             <Select
-              labelId="film"
-              id="film"
-              value={age}
-              onChange={handleChange}
+              labelId="suatChieu"
+              id="suatChieu"
+              value={infoSelect.ngayChieu}
+              onChange={(event) => {
+                setInfoSelect({
+                  ...infoSelect,
+                  maLichChieu: event.target.value.slice(0, 10),
+                });
+              }}
             >
-              <MenuItem value={10}>14:00</MenuItem>
-              <MenuItem value={20}>15:30</MenuItem>
-              <MenuItem value={30}>20:00</MenuItem>
+              {renderSuatChieu()}
             </Select>
           </FormControl>
         </Grid>
+
         <Grid className={classes.gridItem} item xs>
-          <Button className={classes.gridItem_Button}>Mua vé ngay</Button>
+          <Button type="submit" className={classes.gridItem_Button}>
+            Mua vé ngay
+          </Button>
         </Grid>
       </Grid>
     </Container>

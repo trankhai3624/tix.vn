@@ -1,14 +1,10 @@
-import phim1 from "../../img/carousel/p1.jpg";
-import phim2 from "../../img/carousel/p2.jpg";
-import phim3 from "../../img/carousel/p3.png";
-import phim4 from "../../img/carousel/p4.jpg";
-import phim5 from "../../img/carousel/p5.jpg";
 import Slider from "react-slick";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import React, { useRef } from "react";
 import { useStyles } from "./style";
 import { Container } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 function Carousel() {
   const classes = useStyles();
@@ -40,21 +36,28 @@ function Carousel() {
     arrows: true,
     infinite: true,
     // rows: 2,
-    dots: true,
+    dots: false,
     dotsClass: `slick-dots ${classes.dots}`,
     nextArrow: <ArrowRight />,
     prevArrow: <ArrowLeft />,
+  };
+
+  const danhSachPhim = useSelector((state) => state.HomeReducer.danhSachPhim);
+  // console.log(danhSachPhim);
+
+  const renderPhimCarousel = () => {
+    return danhSachPhim.map((item, index) => {
+      return (
+        <img src={item.hinhAnh} className={classes.img} key={index} alt="" />
+      );
+    });
   };
 
   return (
     <div>
       <Container maxWidth className={classes.container}>
         <Slider ref={ref} {...settings}>
-          <img src={phim1} className={classes.img} />
-          <img src={phim2} className={classes.img} />
-          <img src={phim3} className={classes.img} />
-          <img src={phim4} className={classes.img} />
-          <img src={phim5} className={classes.img} />
+          {renderPhimCarousel()}
         </Slider>
       </Container>
     </div>
