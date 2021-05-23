@@ -4,23 +4,49 @@ import "slick-carousel/slick/slick-theme.css";
 
 export const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: "#E74C3C",
+    // backgroundColor: "#E74C3C",
     // width: "100%",
     height: "42rem",
     position: "relative",
     overflow: "hidden",
     "& .slick-slider": { left: "-25px", width: "105%" },
   },
+  carouselItem: {
+    position: "relative",
+    width: "100%",
+    height: "42rem",
+    "&:hover": {
+      "&:hover $playIcon": {
+        opacity: "1",
+        // backgroundColor: "rgba(236,70,248,0.9)",
+        transform: "scale(1.12)",
+        transition: "all 1s",
+      },
+    },
+  },
   img: {
     width: "100%",
     height: "42rem",
-    // position: "absolute",
+    position: "absolute",
     top: 0,
     left: 0,
+    "&:hover": {},
   },
-  // dotsClass: {
-  //   textDecoration: "none",
-  // },
+  playIcon: {
+    transition: "all 0.1s linear",
+    // borderRadius: "0 0 10px 10px",
+    opacity: "0",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    fontSize: "7rem",
+    // zIndex: 100,
+    color: "#00adb5",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
   dots: {
     bottom: "60px",
     transition: "all 0.3s",

@@ -11,12 +11,14 @@ import { useStyles } from "./style";
 import { NavLink, withRouter } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useSelector } from "react-redux";
 
 const Header = (props) => {
   const { history } = props;
   // console.log(props);
   const classes = useStyles();
-
+  const user = JSON.parse(localStorage.getItem("KhachHang"));
+  // console.log(user);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -89,7 +91,7 @@ const Header = (props) => {
                 </MenuItem>
                 <MenuItem
                   className={`${classes.menuItem} `}
-                  onClick={() => handleMenuClick("/")}
+                  onClick={() => handleMenuClick("#lichChieu")}
                   href="#lichChieu"
                 >
                   Lịch chiếu
@@ -148,7 +150,7 @@ const Header = (props) => {
               </MenuItem>
               <MenuItem
                 // className={`${classes.menuItem} `}
-                onClick={() => handleMenuClick("/signin")}
+                onClick={() => handleMenuClick("/memberShip")}
               >
                 <IconButton
                   edge="end"
@@ -157,14 +159,8 @@ const Header = (props) => {
                   color="inherit"
                 >
                   <AccountCircle />
-                  <Typography>Đăng nhập</Typography>
+                  <Typography>{user.hoTen}</Typography>
                 </IconButton>
-              </MenuItem>
-              <MenuItem
-                // className={`${classes.menuItem} `}
-                onClick={() => handleMenuClick("/")}
-              >
-                Hồ Chí Minh
               </MenuItem>
             </>
           )}

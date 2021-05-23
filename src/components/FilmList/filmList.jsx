@@ -102,7 +102,7 @@ export default function SimpleTabs() {
   };
 
   return (
-    <div>
+    <div id="#lichChieu">
       <AppBar className={classes.appBar} position="static">
         <Tabs
           className={classes.tabs}

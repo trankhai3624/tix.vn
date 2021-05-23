@@ -59,7 +59,7 @@ function Footer() {
     );
   });
   return (
-    <Container maxWidth className={classes.container}>
+    <Container maxWidth={false} className={classes.container}>
       <Container className={classes.content} maxWidth="md">
         <Grid className={classes.contentAbove} container>
           <Grid item xs={4}>

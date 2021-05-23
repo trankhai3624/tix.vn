@@ -5,15 +5,17 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import useStyles from "./style";
-import { Button, Container, Grid } from "@material-ui/core";
+import { Button, Container, Grid, Link } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { LayThongTinLichChieuPhim } from "../../containers/HomeTemplate/Home/modules/actions";
+import { useHistory } from "react-router-dom";
+
 // import { LayThongTinLichChieuPhimRequest } from "../../containers/HomeTemplate/Home/modules/constants";
 
 export default function FilmSelect() {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const lichChieu = useSelector((state) => state.HomeReducer.lichChieuPhim);
   const loadingLichChieuPhim = useSelector(
     (state) => state.HomeReducer.loadingLichChieuPhim
@@ -110,8 +112,10 @@ export default function FilmSelect() {
       dispatch(LayThongTinLichChieuPhim(maPhim));
     }
   };
-
-  console.log(infoSelect.maLichChieu);
+  const muaVe = () => {
+    history.push(`/datve/${infoSelect.maLichChieu}`);
+  };
+  // console.log(infoSelect.maLichChieu);
 
   useEffect(() => {
     if (infoSelect.maPhim !== "") {
@@ -200,7 +204,13 @@ export default function FilmSelect() {
         </Grid>
 
         <Grid className={classes.gridItem} item xs>
-          <Button type="submit" className={classes.gridItem_Button}>
+          <Button
+            type="submit"
+            className={classes.gridItem_Button}
+            onClick={() => {
+              muaVe();
+            }}
+          >
             Mua vé ngay
           </Button>
         </Grid>

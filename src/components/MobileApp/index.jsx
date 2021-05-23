@@ -27,7 +27,7 @@ function MobileApp() {
     <Container
       className={classes.container}
       style={{ backgroundImage: `url(${backapp})` }}
-      maxWidth
+      maxWidth={false}
     >
       <Grid container className={classes.content}>
         <Grid className={classes.left} item xs={6}>
