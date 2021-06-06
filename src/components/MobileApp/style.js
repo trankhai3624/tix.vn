@@ -3,12 +3,12 @@ import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   container: {
     width: "100%",
-    padding: 0,
+    padding: "1rem 0",
     margin: 0,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    height: "35rem",
+    // height: "35rem",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

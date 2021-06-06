@@ -1,10 +1,5 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
-import Footer from "../../components/Footer/footer";
-// import Carousel from "../../components/Carousel";
-import Header from "../../components/HomeNavbar";
-import { useSelector } from "react-redux";
-// import HomeReducer from "../HomeTemplate/Home/modules/actions";
+import { Redirect, Route, useHistory } from "react-router-dom";
 
 function LayoutAdmin(props) {
   return (
@@ -18,7 +13,13 @@ function LayoutAdmin(props) {
 }
 
 const AdminTemplate = ({ exact, path, component }) => {
-  if (!localStorage.getItem("QuanTri")) return <Redirect to="/auth" />;
+  const history = useHistory();
+  if (localStorage.getItem("KhachHang")) {
+    alert("Tài khoản không có quyền truy cập.");
+    history.push("/");
+  } else if (!localStorage.getItem("QuanTri")) {
+    return <Redirect to="/auth" />;
+  }
   return (
     <LayoutAdmin>
       <Route exact={exact} path={path} component={component} />

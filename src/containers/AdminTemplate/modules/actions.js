@@ -44,7 +44,7 @@ export const CapNhatThongTinNguoiDung = (userInfo, accessToken) => {
   return (dispatch) => {
     dispatch(CapNhatThongTinNguoiDungRequest());
     axios({
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
       method: "PUT",
       data: userInfo,
       headers: {
@@ -80,7 +80,7 @@ const CapNhatThongTinNguoiDungFailed = (err) => {
   };
 };
 
-/** XoaNguoiDung  */
+//** XoaNguoiDung  */
 export const XoaNguoiDung = (taiKhoan, accessToken) => {
   return (dispatch) => {
     dispatch(XoaNguoiDungRequest());
@@ -93,9 +93,11 @@ export const XoaNguoiDung = (taiKhoan, accessToken) => {
     })
       .then((result) => {
         dispatch(XoaNguoiDungSuccess(result.data));
+        alert(result.data);
       })
       .catch((err) => {
-        dispatch(XoaNguoiDungFailed(err));
+        dispatch(XoaNguoiDungFailed(err.response));
+        alert(err.response.data);
       });
   };
 };
@@ -125,7 +127,7 @@ export const ThemNguoiDung = (addUserInfo, accessToken) => {
   return (dispatch) => {
     dispatch(ThemNguoiDungRequest());
     axios({
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung`,
       method: "POST",
       data: addUserInfo,
       headers: {
@@ -157,6 +159,171 @@ const ThemNguoiDungSuccess = (data) => {
 const ThemNguoiDungFailed = (err) => {
   return {
     type: ActionType.ThemNguoiDungFailed,
+    payload: err,
+  };
+};
+
+//*LayDanhSachPhim
+export const LayDanhSachPhim = () => {
+  return (dispatch) => {
+    dispatch(LayDanhSachPhimRequest());
+    axios({
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09`,
+      method: "GET",
+    })
+      .then((result) => {
+        dispatch(LayDanhSachPhimSuccess(result.data));
+      })
+      .catch((err) => {
+        dispatch(LayDanhSachPhimFailed(err));
+      });
+  };
+};
+
+const LayDanhSachPhimRequest = () => {
+  return {
+    type: ActionType.LayDanhSachPhimRequest,
+  };
+};
+
+const LayDanhSachPhimSuccess = (data) => {
+  return {
+    type: ActionType.LayDanhSachPhimSuccess,
+    payload: data,
+  };
+};
+
+const LayDanhSachPhimFailed = (err) => {
+  return {
+    type: ActionType.LayDanhSachPhimFailed,
+    payload: err,
+  };
+};
+
+//** Cập nhật phim  */
+export const CapNhatPhim = (filmInfo, accessToken) => {
+  return (dispatch) => {
+    dispatch(CapNhatPhimRequest());
+    axios({
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhim`,
+      method: "POST",
+      data: filmInfo,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((result) => {
+        dispatch(CapNhatPhimSuccess(result.data));
+        alert("Cập nhật thành công");
+      })
+      .catch((err) => {
+        dispatch(CapNhatPhimFailed(err));
+        alert(err.response.data);
+      });
+  };
+};
+
+const CapNhatPhimRequest = () => {
+  return {
+    type: ActionType.CapNhatPhimRequest,
+  };
+};
+
+const CapNhatPhimSuccess = (data) => {
+  return {
+    type: ActionType.CapNhatPhimSuccess,
+    payload: data,
+  };
+};
+
+const CapNhatPhimFailed = (err) => {
+  return {
+    type: ActionType.CapNhatPhimFailed,
+    payload: err,
+  };
+};
+
+//*ThemPhim
+export const ThemPhim = (addFilmInfo, accessToken) => {
+  return (dispatch) => {
+    dispatch(ThemPhimRequest());
+    axios({
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhim`,
+      method: "POST",
+      data: addFilmInfo,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((result) => {
+        dispatch(ThemPhimSuccess(result.data));
+        alert(result.data);
+      })
+      .catch((err) => {
+        dispatch(ThemPhimFailed(err));
+        alert(err.response);
+      });
+  };
+};
+
+const ThemPhimRequest = () => {
+  return {
+    type: ActionType.ThemPhimRequest,
+  };
+};
+
+const ThemPhimSuccess = (data) => {
+  return {
+    type: ActionType.ThemPhimSuccess,
+    payload: data,
+  };
+};
+
+const ThemPhimFailed = (err) => {
+  return {
+    type: ActionType.ThemPhimFailed,
+    payload: err,
+  };
+};
+
+//** XoaPhim  */
+export const XoaPhim = (maPhim, accessToken) => {
+  return (dispatch) => {
+    dispatch(XoaPhimRequest());
+    axios({
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`,
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((result) => {
+        dispatch(XoaPhimSuccess(result.data));
+        alert(result.data);
+      })
+      .catch((err) => {
+        dispatch(XoaPhimFailed(err.response));
+        alert(err.response.data);
+      });
+  };
+};
+
+const XoaPhimRequest = () => {
+  return {
+    type: ActionType.XoaPhimRequest,
+  };
+};
+
+const XoaPhimSuccess = (data) => {
+  return {
+    type: ActionType.XoaPhimSuccess,
+    payload: data,
+  };
+};
+
+const XoaPhimFailed = (err) => {
+  return {
+    type: ActionType.XoaPhimFailed,
     payload: err,
   };
 };

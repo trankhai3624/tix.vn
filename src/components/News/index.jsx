@@ -9,13 +9,13 @@ import news4 from "../../img/news/24h/vua-dep-lai-vua-tai-nang-dan-sao-nam-cua-p
 function News() {
   const classes = useStyles();
   return (
-    <Container className={classes.container} maxWidth="md">
+    <Container className={classes.container}>
       <Typography align="center" className={classes.typo}>
         Tin Tức
       </Typography>
       <Grid container>
         <Grid className={classes.newsItem} item xs={6}>
-          <img className={classes.img} src={news1}  alt="" />
+          <img className={classes.img} src={news1} alt="" />
           <Typography className={classes.title}>
             Ấn định chắc nịch ngày khởi chiếu 16.04, Lý Hải tung clip Lật Mặt:
             48H đậm chất
@@ -26,7 +26,7 @@ function News() {
           </Typography>
         </Grid>
         <Grid className={classes.newsItem} item xs={6}>
-          <img className={classes.img} src={news2}  alt="" />
+          <img className={classes.img} src={news2} alt="" />
           <Typography className={classes.title}>
             Ấn định chắc nịch ngày khởi chiếu 16.04, Lý Hải tung clip Lật Mặt:
             48H đậm chất
@@ -37,7 +37,7 @@ function News() {
           </Typography>
         </Grid>
         <Grid className={classes.newsItem} item xs={4}>
-          <img className={classes.img} src={news3}  alt="" />
+          <img className={classes.img} src={news3} alt="" />
           <Typography className={classes.title}>
             Ấn định chắc nịch ngày khởi chiếu 16.04, Lý Hải tung clip Lật Mặt:
             48H đậm chất
@@ -48,7 +48,7 @@ function News() {
           </Typography>
         </Grid>
         <Grid className={classes.newsItem} item xs={4}>
-          <img className={classes.img} src={news4}  alt="" />
+          <img className={classes.img} src={news4} alt="" />
           <Typography className={classes.title}>
             Ấn định chắc nịch ngày khởi chiếu 16.04, Lý Hải tung clip Lật Mặt:
             48H đậm chất
@@ -60,7 +60,7 @@ function News() {
         </Grid>
         <Grid className={classes.newsItem} item xs={4}>
           <Grid className={classes.newsSmall} item xs={12}>
-            <img className={classes.imgSmall} src={news4}  alt="" />
+            <img className={classes.imgSmall} src={news4} alt="" />
             <Typography className={classes.titleSmall}>
               Ấn định chắc nịch ngày khởi chiếu 16.04, Lý Hải tung clip Lật Mặt:
               48H đậm chất

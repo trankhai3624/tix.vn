@@ -1,5 +1,5 @@
 import { Container, Grid, Typography } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "../CinemaRoom/style";
 import { LayDanhSachPhongVe } from "./modules/actions";
@@ -7,7 +7,7 @@ import screen from "../../../img/screen.png";
 import SeatItem from "./SeatItem";
 import SumaryInfo from "./SumaryInfo";
 import { ClearBookingSeat } from "./modules/constants";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 
 function PhongChieuFilm(props) {
   const classes = useStyles();
@@ -16,20 +16,15 @@ function PhongChieuFilm(props) {
   const loading = useSelector((state) => state.PhongVeReducer.loading);
   const dataDatVe = useSelector((state) => state.PhongVeReducer.dataDatVe);
   const data = useSelector((state) => state.PhongVeReducer?.data);
-  // const [maLichChieu, setMaLichChieu] = useState();
+  const maLichChieu = props.match.params.maLichChieu;
 
   useEffect(() => {
-    const maLichChieu = props.match.params.maLichChieu;
-    // setMaLichChieu(maLichChieu);
     dispatch(LayDanhSachPhongVe(maLichChieu));
 
     return () => {
       dispatch({ type: ClearBookingSeat });
     };
   }, []);
-  // console.log(maLichChieu);
-
-  console.log(data);
 
   const renderSeat = () => {
     if (loading == false) {
@@ -46,6 +41,11 @@ function PhongChieuFilm(props) {
     alert("Đặt vé thành công. Vào trang cá nhân để xem chi tiết vé.");
     history.replace("/");
   }
+
+  if (!localStorage.getItem("KhachHang")) {
+    return <Redirect to="/sign" />;
+  }
+
   return (
     <>
       <Container className={classes.fullContainer} maxWidth={false}>
@@ -88,7 +88,7 @@ function PhongChieuFilm(props) {
             </Grid>
             {/* //**TỔNG HỢP */}
             <Grid className={classes.bottomContent} item xs={12}>
-              <SumaryInfo phongVeInfo={data} />
+              <SumaryInfo phongVeInfo={data} maLichChieu={maLichChieu} />
             </Grid>
           </Grid>
         </Container>

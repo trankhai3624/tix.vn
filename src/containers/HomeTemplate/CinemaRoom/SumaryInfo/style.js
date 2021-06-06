@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import background from "../../../../img/cool-background.png";
 export const useStyles = makeStyles((theme) => ({
   icon: { textAlign: "center", cursor: "pointer" },
   tongHop: {

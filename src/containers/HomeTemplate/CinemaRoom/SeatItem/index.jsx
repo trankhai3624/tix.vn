@@ -1,12 +1,10 @@
 import { Grid } from "@material-ui/core";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useStyles } from "./style";
 import { BookingSeat } from "../modules/constants";
 function SeatItem({ seatInfo }) {
-  // console.log(seatInfo);
   const dispatch = useDispatch();
-  // console.log(bookingSeat);
   const handleBookingSeat = () => {
     setSelect(!select);
     dispatch({
@@ -16,7 +14,6 @@ function SeatItem({ seatInfo }) {
   };
   const [select, setSelect] = useState(false);
   const classes = useStyles();
-  const bookingSeat = useSelector((state) => state.PhongVeReducer.bookingSeat);
   return (
     <>
       <Grid className={classes.seatItem} item xs={1}>

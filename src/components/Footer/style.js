@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "1rem",
     paddingBottom: ".5rem",
   },
+  doiTac: { [theme.breakpoints.down(1013)]: { display: "none" } },
   title: { color: "#fff", fontSize: "80%", marginBottom: "0.5rem" },
   logo: {
     borderRadius: "50%",
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
   companyLogo: { borderRadius: "8px", width: "80px", height: "37.65px" },
   infoMid: { padding: "0 1rem", lineHeight: 1.8 },
-  infoTypo: { lineHeight: 1.8, fontSize: "12px", whiteSpace: "nowrap" },
+  infoTypo: { lineHeight: 1.8, fontSize: "12px" },
   branch: { margin: 0, color: "#fff" },
   certificate: {
     width: "130px",

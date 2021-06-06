@@ -34,23 +34,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DeleteModal({ data }) {
+export default function DeleteModal({ taiKhoan }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const { accessToken } = JSON.parse(localStorage.getItem("QuanTri"));
   const handleOpen = () => {
-    console.log(data);
+    console.log(taiKhoan);
     setOpen(true);
   };
-  const errDelete = useSelector((state) => state.AdminReducer.errDelete);
-  // console.log(errDelete);
+
   const handleClose = () => {
     setOpen(false);
   };
 
   const submitDelete = () => {
-    dispatch(XoaNguoiDung(data, accessToken));
+    dispatch(XoaNguoiDung(taiKhoan, accessToken));
   };
   return (
     <div>
@@ -73,7 +72,7 @@ export default function DeleteModal({ data }) {
               Muốn xóa tài khoản
               <span className={classes.highLightTaiKhoan}>
                 {" "}
-                {`${data.taiKhoan}`}{" "}
+                {`${taiKhoan.taiKhoan}`}{" "}
               </span>
               khỏi cơ sở dữ liệu?
             </p>

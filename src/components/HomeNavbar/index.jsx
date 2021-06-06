@@ -11,19 +11,18 @@ import { useStyles } from "./style";
 import { NavLink, withRouter } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useSelector } from "react-redux";
 
 const Header = (props) => {
   const { history } = props;
   // console.log(props);
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("KhachHang"));
-  // console.log(user);
+  console.log(user);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   // console.log(isMobile);
 
   const handleMenu = (event) => {
@@ -75,20 +74,31 @@ const Header = (props) => {
                 open={open}
                 onClose={() => setAnchorEl(null)}
               >
-                <MenuItem
-                  // className={`${classes.menuItem} `}
-                  onClick={() => handleMenuClick("/signin")}
-                >
-                  <IconButton
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-haspopup="true"
-                    color="inherit"
-                  >
-                    <AccountCircle />
-                  </IconButton>{" "}
-                  Đăng nhập
-                </MenuItem>
+                {localStorage.getItem("KhachHang") ? (
+                  <MenuItem onClick={() => handleMenuClick("/memberShip")}>
+                    <IconButton
+                      edge="end"
+                      aria-label="account of current user"
+                      aria-haspopup="true"
+                      color="inherit"
+                    >
+                      <AccountCircle />
+                      <Typography>{user.hoTen}</Typography>
+                    </IconButton>
+                  </MenuItem>
+                ) : (
+                  <MenuItem onClick={() => handleMenuClick("/sign")}>
+                    <IconButton
+                      edge="end"
+                      aria-label="account of current user"
+                      aria-haspopup="true"
+                      color="inherit"
+                    >
+                      <AccountCircle />
+                      <Typography>Đăng nhập</Typography>
+                    </IconButton>
+                  </MenuItem>
+                )}
                 <MenuItem
                   className={`${classes.menuItem} `}
                   onClick={() => handleMenuClick("#lichChieu")}
@@ -113,12 +123,6 @@ const Header = (props) => {
                   onClick={() => handleMenuClick("/")}
                 >
                   Ứng dụng
-                </MenuItem>
-                <MenuItem
-                  // className={`${classes.menuItem} `}
-                  onClick={() => handleMenuClick("/")}
-                >
-                  Hồ Chí Minh
                 </MenuItem>
               </Menu>
             </div>
@@ -148,20 +152,32 @@ const Header = (props) => {
               >
                 Ứng dụng
               </MenuItem>
-              <MenuItem
-                // className={`${classes.menuItem} `}
-                onClick={() => handleMenuClick("/memberShip")}
-              >
-                <IconButton
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-haspopup="true"
-                  color="inherit"
-                >
-                  <AccountCircle />
-                  <Typography>{user.hoTen}</Typography>
-                </IconButton>
-              </MenuItem>
+              {localStorage.getItem("KhachHang") ? (
+                <MenuItem onClick={() => handleMenuClick("/memberShip")}>
+                  <IconButton
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-haspopup="true"
+                    color="inherit"
+                  >
+                    <AccountCircle />
+                    <Typography>{user.hoTen}</Typography>
+                  </IconButton>
+                  
+                </MenuItem>
+              ) : (
+                <MenuItem onClick={() => handleMenuClick("/sign")}>
+                  <IconButton
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-haspopup="true"
+                    color="inherit"
+                  >
+                    <AccountCircle />
+                    <Typography>Đăng nhập</Typography>
+                  </IconButton>
+                </MenuItem>
+              )}
             </>
           )}
         </Toolbar>

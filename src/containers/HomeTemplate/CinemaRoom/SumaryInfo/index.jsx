@@ -4,40 +4,38 @@ import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./style";
 import PaymentIcon from "@material-ui/icons/Payment";
 import ArrowBackOutlinedIcon from "@material-ui/icons/ArrowBackOutlined";
-import { useHistory } from "react-router";
 import { DatVe } from "../modules/actions";
 
-function SumaryInfo({ phongVeInfo }) {
+function SumaryInfo({ phongVeInfo, maLichChieu }) {
   const classes = useStyles();
   const totalAmount = useSelector((state) => state.PhongVeReducer.totalAmount);
   const seatList = useSelector((state) => state.PhongVeReducer.seatList);
   const bookingSeat = useSelector((state) => state.PhongVeReducer.bookingSeat);
   const data = useSelector((state) => state.PhongVeReducer.data);
   const sumSeat = seatList.toString();
-  // console.log(data);
-  const history = useHistory();
   const dispatch = useDispatch();
-  const { taiKhoan, email, soDT, accessToken } = JSON.parse(
+  const { taiKhoan, accessToken } = JSON.parse(
     localStorage.getItem("KhachHang")
   );
-  // console.log(taiKhoan);
 
   const [dataBooking, setDataBooking] = useState({
-    maLichChieu: null,
+    maLichChieu: maLichChieu,
     danhSachVe: [],
     taiKhoanNguoiDung: taiKhoan,
   });
-  // console.log(dataBooking);
 
-  useEffect(() => {
-    if (data) {
-      setDataBooking({
-        ...dataBooking,
-        maLichChieu: data.thongTinPhim.maLichChieu,
-      });
-    }
-  }, []);
-  console.log(dataBooking.maLichChieu);
+  // console.log(data);
+
+  // useEffect(() => {
+  //   if (data) {
+  //     setDataBooking({
+  //       ...dataBooking,
+  //       maLichChieu: data.thongTinPhim.maLichChieu,
+  //     });
+  //   }
+  // }, []);
+
+  console.log(dataBooking);
   const confirmPayment = () => {
     const danhSachVe = [];
     bookingSeat.forEach((danhSach) => {
@@ -46,7 +44,6 @@ function SumaryInfo({ phongVeInfo }) {
     });
 
     dataBooking.danhSachVe = danhSachVe;
-    // dataBooking.maLichChieu = maLichChieu;
     console.log(dataBooking);
     if (dataBooking.danhSachVe.length > 0) {
       dispatch(DatVe(dataBooking, accessToken));
@@ -54,8 +51,6 @@ function SumaryInfo({ phongVeInfo }) {
       alert("bạn chưa chọn ghế");
     }
   };
-  // console.log(dataBooking);
-  // console.log();
   return (
     <Grid className={classes.tongHop} container>
       {/* //**BACK */}
@@ -69,6 +64,7 @@ function SumaryInfo({ phongVeInfo }) {
             <img
               className={classes.img}
               src={phongVeInfo?.thongTinPhim.hinhAnh}
+              alt=""
             />
           </Grid>
 

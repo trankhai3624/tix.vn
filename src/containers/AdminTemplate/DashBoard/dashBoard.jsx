@@ -21,10 +21,12 @@ import ListItemText from "@material-ui/core/ListItemText";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import TheatersSharpIcon from "@material-ui/icons/TheatersSharp";
 import EventNoteSharpIcon from "@material-ui/icons/EventNoteSharp";
-import FilmManagement from "../filmManagement";
+import FilmManagement from "../FilmManagement/filmManagement";
 import ShowManagement from "../showManagement";
 import UserManagement from "../userManagement";
 import { useSelector } from "react-redux";
+import { Button } from "@material-ui/core";
+import { useHistory } from "react-router";
 
 function Copyright() {
   return (
@@ -162,7 +164,7 @@ export default function DashBoard() {
 
   //** CHOOSE COMPONENT */
   const [component, setComponent] = useState("userManagement");
-
+  const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -184,6 +186,8 @@ export default function DashBoard() {
     // return <RenderCellGrid />;
   };
 
+  const { taiKhoan } = JSON.parse(localStorage.getItem("QuanTri"));
+  console.log(taiKhoan);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -213,6 +217,15 @@ export default function DashBoard() {
           >
             Dashboard
           </Typography>
+          <Typography>Tài khoản quản trị: {taiKhoan}</Typography>
+          <Button
+            onClick={() => {
+              localStorage.removeItem("QuanTri");
+              history.push("/auth");
+            }}
+          >
+            Đăng xuất
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer

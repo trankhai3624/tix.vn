@@ -6,9 +6,8 @@ import Fade from "@material-ui/core/Fade";
 import CreateIcon from "@material-ui/icons/Create";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
-import { CapNhatThongTinNguoiDung } from "../../HomeTemplate/MemberShip/modules/actions";
-// import { CapNhatThongTinNguoiDung } from "../../../containers/AdminTemplate/DashBoard/modules/actions";
+import { useDispatch } from "react-redux";
+import { CapNhatThongTinNguoiDung } from "../modules/actions";
 
 const useStyles = makeStyles((theme) => ({
   editButton: { cursor: "pointer", width: "1.5rem", height: "1.5rem" },
@@ -54,10 +53,6 @@ export default function EditModal({ data }) {
     soDt: data.soDt,
     maNhom: "GP09",
   });
-  const dataUpdate = useSelector((state) => state.AdminReducer.dataUpdate);
-  const errUpdate = useSelector((state) => state.AdminReducer.errUpdate);
-  // console.log(dataUpdate);
-  // console.log(errUpdate);
   const { accessToken } = JSON.parse(localStorage.getItem("QuanTri"));
 
   const handleOpen = () => {

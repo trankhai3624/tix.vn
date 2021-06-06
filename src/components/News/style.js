@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     padding: 0,
+    width: "80%",
   },
   typo: {
     fontSize: "1.5rem",

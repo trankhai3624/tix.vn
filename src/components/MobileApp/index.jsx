@@ -1,6 +1,5 @@
 import { Box, Container, Grid, Typography } from "@material-ui/core";
 import React, { useRef } from "react";
-// import { Link } from "react-router-dom";
 import backapp from "../../img/app/backapp.jpg";
 import mobile from "../../img/app/mobile.png";
 import Slider from "react-slick";
@@ -13,7 +12,6 @@ import useStyles from "./style";
 
 function MobileApp() {
   const classes = useStyles();
-  const ref = useRef({});
   const settings = {
     loop: true,
     slidesToShow: 1,
@@ -30,7 +28,7 @@ function MobileApp() {
       maxWidth={false}
     >
       <Grid container className={classes.content}>
-        <Grid className={classes.left} item xs={6}>
+        <Grid item md={6} sm={12} xs={12} className={classes.left}>
           <Typography className={classes.title}>
             Ứng dụng tiện lợi dành cho người yêu điện ảnh
           </Typography>

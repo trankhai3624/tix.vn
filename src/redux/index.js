@@ -3,8 +3,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import HomeReducer from "../containers/HomeTemplate/Home/modules/reducers";
 import DetailReducer from "../containers/HomeTemplate/Detail/modules/reducers";
-import SignInReducer from "../containers/HomeTemplate/SignIn/modules/reducers";
-import SignUpReducer from "../containers/HomeTemplate/SignUp/modules/reducers";
+import AuthReducer from "../containers/HomeTemplate/Sign/modules/reducers";
 import PhongVeReducer from "../containers/HomeTemplate/CinemaRoom/modules/reducers";
 import MemberReducer from "../containers/HomeTemplate/MemberShip/modules/reducers";
 import AdminReducer from "../containers/AdminTemplate/modules/reducers";
@@ -14,8 +13,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const reducer = combineReducers({
   HomeReducer,
   DetailReducer,
-  SignInReducer,
-  SignUpReducer,
+
+  AuthReducer,
   PhongVeReducer,
   MemberReducer,
   AdminReducer,

@@ -3,12 +3,14 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    // width: "100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   header: {
     backgroundColor: "#1d232b",
+    // width: "100%",
   },
   brand: {
     fontSize: "1.5rem",
@@ -29,27 +31,10 @@ export const useStyles = makeStyles((theme) => ({
     // },
   },
   menuItem: {
-    position: "relative",
-
-    "&::after": {
-      position: "absolute",
-      left: 0,
-      bottom: "0",
-      content: "''",
-      width: "0%",
-      height: "0.13rem",
-      // backgroundColor: "#fff",
-      "&::hover": {
-        backgroundColor: "#02cdce",
-        width: "100%",
-        transition: "all 0.4s",
-      },
-    },
     "&:hover": {
       color: "#02cdce",
 
       transition: "all 0.4s",
     },
   },
-  // menuItem:hover::after: { width: "100%" },
 }));

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -8,7 +8,6 @@ import { useStyles } from "./style";
 import AccountInfo from "./AccountInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { ThongTinTaiKhoan } from "../MemberShip/modules/actions";
-import { Container } from "@material-ui/core";
 import TicketInfo from "./TicketInfo";
 // import DataList from "./TicketInfo/dataList";
 
@@ -51,14 +50,11 @@ function MemberShip() {
   const data = useSelector((state) => state.MemberReducer.data);
   const loading = useSelector((state) => state.MemberReducer.loading);
 
-  const err = useSelector((state) => state.MemberReducer.err);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const [dataRequest, setDataRequest] = useState({ taiKhoan: "" });
   const dispatch = useDispatch();
 
-  // console.log(err);
   useEffect(() => {
     if (localStorage.getItem("KhachHang")) {
       let { taiKhoan } = JSON.parse(localStorage.getItem("KhachHang"));
@@ -66,7 +62,6 @@ function MemberShip() {
       dispatch(ThongTinTaiKhoan({ taiKhoan }));
     }
   }, []);
-  // console.log(data);
   if (loading) {
     return null;
   }

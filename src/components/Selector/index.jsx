@@ -5,10 +5,17 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import useStyles from "./style";
-import { Button, Container, Grid, Link } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  Grid,
+  Link,
+  useMediaQuery,
+} from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { LayThongTinLichChieuPhim } from "../../containers/HomeTemplate/Home/modules/actions";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
+import { useTheme } from "@material-ui/core/styles";
 
 // import { LayThongTinLichChieuPhimRequest } from "../../containers/HomeTemplate/Home/modules/constants";
 
@@ -21,7 +28,7 @@ export default function FilmSelect() {
     (state) => state.HomeReducer.loadingLichChieuPhim
   );
   const danhSachPhim = useSelector((state) => state.HomeReducer.danhSachPhim);
-
+  const theme = useTheme();
   const [infoSelect, setInfoSelect] = useState({
     maPhim: "",
     heThongRap: "",
@@ -113,9 +120,15 @@ export default function FilmSelect() {
     }
   };
   const muaVe = () => {
-    history.push(`/datve/${infoSelect.maLichChieu}`);
+    if (!localStorage.getItem("KhachHang")) {
+      alert("Đăng nhập trước khi đặt vé!");
+      history.push("/sign");
+    } else if (infoSelect.maLichChieu == "") {
+      return alert("Vui lòng chọn suất chiếu.");
+    } else if (localStorage.getItem("KhachHang")) {
+      history.push(`/datve/${infoSelect.maLichChieu}`);
+    }
   };
-  // console.log(infoSelect.maLichChieu);
 
   useEffect(() => {
     if (infoSelect.maPhim !== "") {
@@ -123,9 +136,15 @@ export default function FilmSelect() {
     }
   }, [infoSelect.maPhim]);
   return (
-    <Container maxWidth="md" className={classes.form}>
-      <Grid container spacing={1}>
-        <Grid className={classes.gridItem} item xs>
+    <Container className={classes.form}>
+      <Grid
+        container
+        spacing={1}
+        justify="center"
+        alignItem="center"
+        alignContent="center"
+      >
+        <Grid className={classes.gridItem} item xs={2}>
           <FormControl className={`${classes.formControl} `}>
             <InputLabel id="film">Phim</InputLabel>
             <Select
@@ -145,7 +164,7 @@ export default function FilmSelect() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid className={classes.gridItem} item xs>
+        <Grid className={classes.gridItem} item xs={2}>
           <FormControl className={`${classes.formControl} `}>
             <InputLabel id="heThongRap">Hệ thống rạp</InputLabel>
             <Select
@@ -165,7 +184,7 @@ export default function FilmSelect() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid className={classes.gridItem} item xs>
+        <Grid className={classes.gridItem} item xs={2}>
           <FormControl className={`${classes.formControl} `}>
             <InputLabel id="cumRap">Cụm rạp</InputLabel>
             <Select
@@ -184,7 +203,7 @@ export default function FilmSelect() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid className={classes.gridItem} item xs>
+        <Grid className={classes.gridItem} item xs={2}>
           <FormControl className={`${classes.formControl} `}>
             <InputLabel id="suatChieu">Suất chiếu</InputLabel>
             <Select
@@ -202,8 +221,11 @@ export default function FilmSelect() {
             </Select>
           </FormControl>
         </Grid>
-
-        <Grid className={classes.gridItem} item xs>
+        <Grid
+          className={classes.gridItem}
+          item
+          xs={useMediaQuery(theme.breakpoints.down(1021)) ? 5 : 2}
+        >
           <Button
             type="submit"
             className={classes.gridItem_Button}

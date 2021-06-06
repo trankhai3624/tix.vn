@@ -78,38 +78,38 @@ const LayThongTinLichChieuPhimFailed = (err) => {
 };
 // * Schedule:
 // Lấy thông tin hệ thống rạp
-export const LayThongTinHeThongRap = () => {
+export const LayThongTinLichChieuHeThongRap = () => {
   return (dispatch) => {
-    dispatch(LayThongTinHeThongRapRequest());
+    dispatch(LayThongTinLichChieuHeThongRapRequest());
     axios({
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP09`,
       method: "GET",
     })
       .then((result) => {
-        dispatch(LayThongTinHeThongRapSuccess(result.data));
+        dispatch(LayThongTinLichChieuHeThongRapSuccess(result.data));
       })
       .catch((err) => {
-        dispatch(LayThongTinHeThongRapFailed(err));
+        dispatch(LayThongTinLichChieuHeThongRapFailed(err));
       });
   };
 };
 
-const LayThongTinHeThongRapRequest = () => {
+const LayThongTinLichChieuHeThongRapRequest = () => {
   return {
-    type: ActionType.LayThongTinHeThongRapRequest,
+    type: ActionType.LayThongTinLichChieuHeThongRapRequest,
   };
 };
 
-const LayThongTinHeThongRapSuccess = (data) => {
+const LayThongTinLichChieuHeThongRapSuccess = (data) => {
   return {
-    type: ActionType.LayThongTinHeThongRapSuccess,
+    type: ActionType.LayThongTinLichChieuHeThongRapSuccess,
     payload: data,
   };
 };
 
-const LayThongTinHeThongRapFailed = (err) => {
+const LayThongTinLichChieuHeThongRapFailed = (err) => {
   return {
-    type: ActionType.LayThongTinHeThongRapFailed,
+    type: ActionType.LayThongTinLichChieuHeThongRapFailed,
     payload: err,
   };
 };

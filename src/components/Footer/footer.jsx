@@ -1,15 +1,16 @@
 import { Container, Grid, Link, Typography } from "@material-ui/core";
 import React from "react";
+import cinema from "../../img/cinema.jpg";
 
 import useStyles from "./style";
 import logo1 from "../../img/footer/customer/1.png";
-import logo2 from "../../img/footer/customer/2.png";
-import logo3 from "../../img/footer/customer/3.png";
-import logo4 from "../../img/footer/customer/4.png";
+import logo2 from "../../img/footer/customer/lotte.png";
+import logo3 from "../../img/footer/customer/bhd.png";
+import logo4 from "../../img/footer/customer/cgv.png";
 import logo5 from "../../img/footer/customer/5.jpg";
 import logo6 from "../../img/footer/customer/6.png";
 import logo7 from "../../img/footer/customer/7.jpg";
-import logo8 from "../../img/footer/customer/8.png";
+import logo8 from "../../img/footer/customer/cine.png";
 import logo9 from "../../img/footer/customer/9.png";
 import logo10 from "../../img/footer/customer/10.png";
 import facebook from "../../img/footer/customer/facebook.png";
@@ -61,7 +62,7 @@ function Footer() {
   return (
     <Container maxWidth={false} className={classes.container}>
       <Container className={classes.content} maxWidth="md">
-        <Grid className={classes.contentAbove} container>
+        <Grid justify="center" container className={classes.contentAbove}>
           <Grid item xs={4}>
             <Typography className={classes.title}>TIX</Typography>
             <Grid container>
@@ -79,7 +80,7 @@ function Footer() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={4} className={classes.doiTac}>
             <Typography className={classes.title}>ĐỐI TÁC</Typography>
             <Grid container>{renderImg}</Grid>
           </Grid>
@@ -105,28 +106,38 @@ function Footer() {
           </Grid>
         </Grid>
         <Grid container className={classes.companyInfo}>
-          <Grid item xs={1}>
+          <Grid item md={1}>
             <img className={classes.companyLogo} src={zion} alt="" />
           </Grid>
-          <Grid className={classes.infoMid} item xs={9}>
+          <Grid className={classes.infoMid} item md={9}>
             <Typography className={`${classes.branch} ${classes.infoTypo}`}>
               TIX – SẢN PHẨM CỦA CÔNG TY CỔ PHẦN ZION
             </Typography>
             <Typography className={classes.infoTypo}>
               Địa chỉ: Z06 Đường số 13, Phường Tân Thuận Đông, Quận 7, Tp. Hồ
               Chí Minh, Việt Nam.
-              <br />
-              Giấy chứng nhận đăng ký kinh doanh số: 0101659783,
-              <br /> đăng ký thay đổi lần thứ 30, ngày 22 tháng 01 năm 2020 do
-              Sở kế hoạch và đầu tư Thành phố Hồ Chí Minh cấp.
-              <br /> Số Điện Thoại (Hotline): 1900 545 436
-              <br /> Email:{" "}
-              <a className={classes.email} href="mailto:trankhai3624@gmail.com">
-                trankhai3624@gmail.com
-              </a>
+              <Typography className={classes.infoTypo}>
+                Giấy chứng nhận đăng ký kinh doanh số: 0101659783,
+              </Typography>
+              <Typography className={classes.infoTypo}>
+                đăng ký thay đổi lần thứ 30, ngày 22 tháng 01 năm 2020 do Sở kế
+                hoạch và đầu tư Thành phố Hồ Chí Minh cấp.
+              </Typography>
+              <Typography className={classes.infoTypo}>
+                Số Điện Thoại (Hotline): 1900 545 436
+              </Typography>
+              <Typography className={classes.infoTypo}>
+                Email:
+                <a
+                  className={classes.email}
+                  href="mailto:trankhai3624@gmail.com"
+                >
+                  trankhai3624@gmail.com
+                </a>
+              </Typography>
             </Typography>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item md={2}>
             <img src={certificate} className={classes.certificate} alt="" />
           </Grid>
         </Grid>

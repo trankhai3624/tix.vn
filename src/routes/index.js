@@ -3,8 +3,7 @@ import PhongChieuFilm from "../containers/HomeTemplate/CinemaRoom";
 import ChiTiet from "../containers/HomeTemplate/Detail";
 import Home from "../containers/HomeTemplate/Home";
 import MemberShip from "../containers/HomeTemplate/MemberShip";
-import SignIn from "../containers/HomeTemplate/SignIn";
-import SignUp from "../containers/HomeTemplate/SignUp";
+import Sign from "../containers/HomeTemplate/Sign/index";
 export const routeHome = [
   {
     exact: true,
@@ -26,6 +25,11 @@ export const routeHome = [
     exact: true,
     path: "/membership",
     component: MemberShip,
+  },
+  {
+    exact: true,
+    path: "/sign",
+    component: Sign,
   },
 ];
 

@@ -1,14 +1,14 @@
-// import { Typography } from "@material-ui/core";
 import React from "react";
 import Carousel from "../../../components/Carousel";
 import FilmSelect from "../../../components/Selector";
-import FilmList from "../../../components/FilmList/filmList";
-// import Phim from "../../../components/FilmSchedule/Phim";
-import Rap from "../../../components/FilmSchedule/Rap";
+import FilmList from "../../../components/FilmList/filmList1";
+// import FilmList from "../../../components/FilmList/filmList2";
+import Schedules from "../../../components/FilmSchedule/index";
 import News from "../../../components/News";
 import MobileApp from "../../../components/MobileApp";
-import TransitionsModal from "../../../components/Carousel/ModalTrailer/index2";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 function Home() {
   const loadingDanhSachPhim = useSelector(
@@ -18,18 +18,18 @@ function Home() {
     (state) => state.HomeReducer.loadingHeThongRap
   );
 
-  // const renderLoading = () => {
-  //   return <p>...loading</p>;
-  // };
+  const loadingLichChieuHeThongRap = useSelector(
+    (state) => state.HomeReducer.loadingLichChieuHeThongRap
+  );
 
-  if (loadingDanhSachPhim || loadingHeThongRap) return <p>Loading.....</p>;
+  if (loadingDanhSachPhim || loadingHeThongRap || loadingLichChieuHeThongRap)
+    return <p>Loading.....</p>;
   return (
     <div>
       <Carousel />
       <FilmSelect />
       <FilmList />
-      <Rap />
-      {/* <Phim /> */}
+      <Schedules />
       <News />
       <MobileApp />
     </div>

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useHistory } from "react-router";
 import * as ActionType from "./constants";
 
 // * Carousel:

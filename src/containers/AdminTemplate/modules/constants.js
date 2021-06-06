@@ -24,3 +24,23 @@ export const XoaNguoiDungFailed = "XoaNguoiDungFailed";
 export const ThemNguoiDungRequest = "ThemNguoiDungRequest";
 export const ThemNguoiDungSuccess = "ThemNguoiDungSuccess";
 export const ThemNguoiDungFailed = "ThemNguoiDungFailed";
+
+// *LayDanhSachPhim
+export const LayDanhSachPhimRequest = "LayDanhSachPhimRequest";
+export const LayDanhSachPhimSuccess = "LayDanhSachPhimSuccess";
+export const LayDanhSachPhimFailed = "LayDanhSachPhimFailed";
+
+// *CapNhatPhim
+export const CapNhatPhimRequest = "CapNhatPhimRequest";
+export const CapNhatPhimSuccess = "CapNhatPhimSuccess";
+export const CapNhatPhimFailed = "CapNhatPhimFailed";
+
+// *ThemPhim
+export const ThemPhimRequest = "ThemPhimRequest";
+export const ThemPhimSuccess = "ThemPhimSuccess";
+export const ThemPhimFailed = "ThemPhimFailed";
+
+// *XoaPhim
+export const XoaPhimRequest = "XoaPhimRequest";
+export const XoaPhimSuccess = "XoaPhimSuccess";
+export const XoaPhimFailed = "XoaPhimFailed";

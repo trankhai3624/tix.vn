@@ -14,8 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { LayThongTinPhim } from "./modules/actions";
 import { useStyles } from "./style";
 import PropTypes from "prop-types";
-import Rap from "../../../components/FilmSchedule/Rap";
-import Phim from "../../../components/FilmSchedule/Phim";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,7 +76,11 @@ function ChiTiet(props) {
         <Grid className={classes.itemTop} container xs={12}>
           {/* // *Phim item */}
           <Grid className={classes.filmPoster} item xs={3}>
-            <img className={classes.imgPoster} src={filmDetail?.hinhAnh} />
+            <img
+              className={classes.imgPoster}
+              src={filmDetail?.hinhAnh}
+              alt=""
+            />
           </Grid>
           <Grid className={classes.filmInfo} item xs={6}>
             <Typography className={classes.showingDay}>
@@ -138,7 +140,7 @@ function ChiTiet(props) {
           </AppBar>
           {/* // * Lịch chiếu */}
           <TabPanel value={value} index={0}>
-            <Phim />
+            {/* <Phim /> */}
           </TabPanel>
           {/* // * Thông tin */}
           <TabPanel value={value} index={1}>

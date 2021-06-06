@@ -5,25 +5,13 @@ import React, { useRef } from "react";
 import { useStyles } from "./style";
 import { Container } from "@material-ui/core";
 import { useSelector } from "react-redux";
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
 import TransitionsModal from "./ModalTrailer/index2";
 import { Link } from "react-router-dom";
 
 function Carousel() {
   const classes = useStyles();
   const ref = useRef({});
-  const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   const next = () => {
     ref.current.slickNext();
   };
@@ -57,7 +45,6 @@ function Carousel() {
   };
 
   const danhSachPhim = useSelector((state) => state.HomeReducer.danhSachPhim);
-  // console.log(danhSachPhim);
 
   const renderPhimCarousel = () => {
     return danhSachPhim.map((item, index) => {
@@ -71,7 +58,6 @@ function Carousel() {
               alt=""
             />
           </Link>
-
           <div className={classes.playIcon}>
             <TransitionsModal trailer={item.trailer} />
           </div>
@@ -90,9 +76,5 @@ function Carousel() {
     </div>
   );
 }
-
-// const mapStateToProps = (state) => {
-//   return {};
-// };
 
 export default Carousel;

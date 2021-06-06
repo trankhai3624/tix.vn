@@ -18,6 +18,13 @@ export const LayThongTinLichChieuPhimFailed = "LayThongTinLichChieuPhimFailed";
 
 // *SCHEDULE
 // lấy thông tin hệ thống rạp lịch chiếu
-export const LayThongTinHeThongRapRequest = "LayThongTinHeThongRapRequest";
-export const LayThongTinHeThongRapSuccess = "LayThongTinHeThongRapSuccess";
-export const LayThongTinHeThongRapFailed = "LayThongTinHeThongRapFailed";
+export const LayThongTinLichChieuHeThongRapRequest =
+  "LayThongTinLichChieuHeThongRapRequest";
+export const LayThongTinLichChieuHeThongRapSuccess =
+  "LayThongTinLichChieuHeThongRapSuccess";
+export const LayThongTinLichChieuHeThongRapFailed =
+  "LayThongTinLichChieuHeThongRapFailed";
+
+export const ChangeMaHeThongRap = "ChangeMaHeThongRap";
+export const ChangeMaCumRap = "ChangeMaCumRap";
+export const ClearSelection = "ClearSelection";

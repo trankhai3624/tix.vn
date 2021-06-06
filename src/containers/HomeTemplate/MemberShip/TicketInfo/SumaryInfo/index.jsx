@@ -1,8 +1,6 @@
 import { Grid } from "@material-ui/core";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { useStyles } from "./style";
-import { useHistory } from "react-router";
 
 function SumaryInfo({ ticketList }) {
   const classes = useStyles();

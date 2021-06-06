@@ -4,12 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Button, TextField } from "@material-ui/core";
-import { FormControl } from "@material-ui/core";
-import { InputLabel } from "@material-ui/core";
-import { Select } from "@material-ui/core";
-import { MenuItem } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-// import { ThemNguoiDung } from "../modules/actions";
 import { ThemNguoiDung } from "../modules/actions";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,8 +31,6 @@ export default function AddModal() {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const { accessToken } = JSON.parse(localStorage.getItem("QuanTri"));
-  const errAddUser = useSelector((state) => state.AdminReducer.errAddUser);
-  console.log(errAddUser);
 
   const [addUserInfo, setAddUserInfo] = useState({
     taiKhoan: "",
@@ -63,7 +56,8 @@ export default function AddModal() {
   const submitAddUser = () => {
     dispatch(ThemNguoiDung(addUserInfo, accessToken));
   };
-  console.log(addUserInfo);
+  // console.log(accessToken);
+  // console.log(addUserInfo);
   return (
     <div>
       <button

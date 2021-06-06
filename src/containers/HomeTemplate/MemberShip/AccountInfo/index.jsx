@@ -2,20 +2,17 @@ import React, { useEffect, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-// import Input from "@material-ui/core/Input";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import Input from "@material-ui/core/Input";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { CapNhatThongTinNguoiDung } from "../modules/actions";
+import { useHistory } from "react-router";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -52,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AccountInfo({ user }) {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const history = useHistory();
   const [updateInfo, setUpdateInfo] = useState(false);
   const [changePass, setChangePass] = useState(false);
   const [info, setInfo] = useState({
@@ -63,21 +61,11 @@ export default function AccountInfo({ user }) {
     maLoaiNguoiDung: "",
     hoTen: "",
   });
-  const { taiKhoan, email, soDT, accessToken } = JSON.parse(
-    localStorage.getItem("KhachHang")
-  );
-  // console.log(user);
+  const { accessToken } = JSON.parse(localStorage.getItem("KhachHang"));
 
-  const errUpdateInfo = useSelector(
-    (state) => state.MemberReducer.errUpdateInfo
-  );
-  const dataUpdateInfo = useSelector(
-    (state) => state.MemberReducer.dataUpdateInfo
-  );
   useEffect(() => {
     if (user) {
-      let { taiKhoan, matKhau, hoTen, email, soDT, maNhom, loaiNguoiDung } =
-        user;
+      let { taiKhoan, matKhau, hoTen, email, soDT, maNhom } = user;
       setInfo({
         taiKhoan: taiKhoan,
         matKhau: matKhau,
@@ -89,10 +77,6 @@ export default function AccountInfo({ user }) {
       });
     }
   }, []);
-  // console.log(accessToken);
-  // console.log(info);
-  // console.log(errUpdateInfo);
-  // console.log(dataUpdateInfo);
 
   const dispatchUpdateInfo = () => {
     console.log(info);
@@ -107,10 +91,6 @@ export default function AccountInfo({ user }) {
       [name]: value,
     });
   };
-  // console.log(info);
-  // console.log(info);
-
-  const handleUpdateInfo = () => {};
 
   return (
     <Container component="main" maxWidth="sm">
@@ -227,6 +207,18 @@ export default function AccountInfo({ user }) {
             }}
           >
             Đổi mật khẩu
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+            fullWidth
+            onClick={() => {
+              localStorage.removeItem("KhachHang");
+              history.push("/");
+            }}
+          >
+            Đăng xuất
           </Button>
         </form>
       </div>

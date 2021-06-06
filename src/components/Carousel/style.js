@@ -4,13 +4,12 @@ import "slick-carousel/slick/slick-theme.css";
 
 export const useStyles = makeStyles((theme) => ({
   container: {
-    // backgroundColor: "#E74C3C",
-    // width: "100%",
-    height: "42rem",
     position: "relative",
     overflow: "hidden",
-    "& .slick-slider": { left: "-25px", width: "105%" },
+    padding: 0,
+    // "& .slick-slider": { left: "-25px", width: "105%" },
   },
+  "& .slick-slide": { width: "15rem" },
   carouselItem: {
     position: "relative",
     width: "100%",
@@ -18,7 +17,6 @@ export const useStyles = makeStyles((theme) => ({
     "&:hover": {
       "&:hover $playIcon": {
         opacity: "1",
-        // backgroundColor: "rgba(236,70,248,0.9)",
         transform: "scale(1.12)",
         transition: "all 1s",
       },
@@ -47,27 +45,7 @@ export const useStyles = makeStyles((theme) => ({
       cursor: "pointer",
     },
   },
-  dots: {
-    bottom: "60px",
-    transition: "all 0.3s",
-    "& li.slick-active button::before": {
-      color: "#02cdce !important",
-      transform: "scale(1.2)",
-      transition: "all 0.3s",
-      opacity: 1,
-    },
-    "& li": {
-      "&:hover": {
-        transform: "scale(1.2)",
-        transition: "all 0.3s",
-      },
-      "& button::before": {
-        fontSize: theme.typography.pxToRem(11),
-        color: "#eeeeee",
-        opacity: 1,
-      },
-    },
-  },
+
   arrow: {
     zIndex: 2,
     "& .MuiSvgIcon-root": {
@@ -83,6 +61,6 @@ export const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  arrowLeft: { position: "absolute", top: "40%", left: 0 },
-  arrowRight: { position: "absolute", top: "40%", right: "25px" },
+  arrowLeft: { position: "absolute", top: "40%", left: "2%" },
+  arrowRight: { position: "absolute", top: "40%", right: "4%" },
 }));

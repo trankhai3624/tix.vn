@@ -16,7 +16,6 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     // *PHIM CHI TIẾT
-    // LayDanhSachPhongVe
     case ActionType.LayDanhSachPhongVeRequest:
       //sửa state
       state.loading = true;

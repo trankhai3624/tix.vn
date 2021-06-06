@@ -5,17 +5,15 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
   LayDanhSachPhim,
-  LayThongTinHeThongRap,
+  LayThongTinLichChieuHeThongRap,
 } from "./containers/HomeTemplate/Home/modules/actions";
 import PageNotFound from "./containers/PageNotFound/index";
-import SignIn from "./containers/HomeTemplate/SignIn";
-import SignUp from "./containers/HomeTemplate/SignUp";
-import Auth from "./containers/Auth";
+import Auth from "./containers/AdminTemplate/auth";
 import AdminTemplate from "./containers/AdminTemplate";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(LayThongTinHeThongRap());
+    dispatch(LayThongTinLichChieuHeThongRap());
     dispatch(LayDanhSachPhim());
   }, []);
 
